@@ -25,6 +25,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run migrations
+        env:
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
         run: |
           python manage.py makemigrations
           python manage.py migrate
@@ -52,6 +54,8 @@ jobs:
           VPS_IP: ${{ secrets.VPS_IP }}
           VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
           VPS_PROJECT_PATH: ${{ secrets.VPS_PROJECT_PATH }}
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+
         run: |
           echo "$VPS_SSH_KEY" > private_key
           chmod 600 private_key

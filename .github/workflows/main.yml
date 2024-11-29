@@ -59,6 +59,11 @@ jobs:
         run: |
           echo "$VPS_SSH_KEY" > private_key
           chmod 600 private_key
+
+          # Add the host key to known_hosts
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $VPS_IP >> ~/.ssh/known_hosts
+          
           scp -i private_key -o StrictHostKeyChecking=ask -r ./* $VPS_USER@$VPS_HOST:$VPS_PROJECT_PATH
           ssh -i private_key -o StrictHostKeyChecking=ask $VPS_USER@$VPS_HOST << 'EOF'
             cd $VPS_PROJECT_PATH

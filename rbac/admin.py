@@ -89,7 +89,7 @@ class LimitedGroupAdmin(GroupAdmin):
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj, **kwargs)
-        if not request.user.is_superuser:
+        if form.base_fields.get('permissions') and not request.user.is_superuser:
             # Retrieve only permissions related to a specific app or model
             # For example, let's say we want to limit to permissions for 'rbac'
             limited_permissions = Permission.objects.filter(

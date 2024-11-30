@@ -1,6 +1,11 @@
 # Backend-Developer-Intern---Assignment---VRV-Security
 This assignment is based on the concept of RBAC (Role Bases Access Control) for VRV Security's Backend Developer Role. It is developed on Django (a python's framework) and modified the admin portal according to the requirement. 
 
+## Features
+
+- Built CI/DB pipeline to do automatic testing and deployment.
+- Only Superuser can manage another superuser's account other users does have only view access.
+
 The default setup is as follows -
 ## _Role Details_
 | Role | Permissions |
